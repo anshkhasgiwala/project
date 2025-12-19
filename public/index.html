@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Admin Login Button -->
+    <a href="/admin/login.html" class="admin-login-btn" title="Admin Login">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        Admin
+    </a>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Welcome to Our Portfolio</h1>
+                    <p>We create amazing digital experiences that help businesses grow and succeed in the modern world.</p>
+                </div>
+                <div class="contact-form-card">
+                    <h3>Get In Touch</h3>
+                    <form id="contactForm">
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                        <input type="tel" id="mobile" placeholder="Mobile Number" required>
+                        <input type="text" id="city" placeholder="City" required>
+                        <button type="submit">Submit</button>
+                    </form>
+                    <div id="contactMessage" class="message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2>Our Projects</h2>
+            <div id="projectsContainer" class="projects-grid">
+                <!-- Projects will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Happy Clients Section -->
+    <section class="clients-section">
+        <div class="container">
+            <h2>Happy Clients</h2>
+            <div id="clientsContainer" class="clients-grid">
+                <!-- Clients will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Stay updated with our latest projects and news</p>
+            <form id="newsletterForm">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <div id="newsletterMessage" class="message"></div>
+        </div>
+    </section>
+
+    <script src="landing.js"></script>
+</body>
+</html>

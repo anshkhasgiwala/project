@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Portfolio Management</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <button class="nav-btn active" data-section="projects">Manage Projects</button>
+                <button class="nav-btn" data-section="clients">Manage Clients</button>
+                <button class="nav-btn" data-section="contacts">Contact Submissions</button>
+                <button class="nav-btn" data-section="newsletter">Newsletter Subscribers</button>
+                <button id="logoutBtn" class="nav-btn logout-btn">Logout</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Projects Section -->
+            <section id="projects" class="content-section active">
+                <h1>Manage Projects</h1>
+                <div class="form-container">
+                    <h3>Add New Project</h3>
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label>Project Image</label>
+                            <input type="file" id="projectImage" accept="image/*" required>
+                            <div id="projectImagePreview" class="image-preview"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Project Name</label>
+                            <input type="text" id="projectName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Project Description</label>
+                            <textarea id="projectDescription" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Add Project</button>
+                    </form>
+                    <div id="projectMessage" class="message"></div>
+                </div>
+            </section>
+
+            <!-- Clients Section -->
+            <section id="clients" class="content-section">
+                <h1>Manage Clients</h1>
+                <div class="form-container">
+                    <h3>Add New Client</h3>
+                    <form id="clientForm">
+                        <div class="form-group">
+                            <label>Client Image</label>
+                            <input type="file" id="clientImage" accept="image/*" required>
+                            <div id="clientImagePreview" class="image-preview"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Client Name</label>
+                            <input type="text" id="clientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Client Description</label>
+                            <textarea id="clientDescription" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Client Designation</label>
+                            <input type="text" id="clientDesignation" placeholder="e.g., CEO, Designer" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Add Client</button>
+                    </form>
+                    <div id="clientMessage" class="message"></div>
+                </div>
+            </section>
+
+            <!-- Contact Submissions Section -->
+            <section id="contacts" class="content-section">
+                <h1>Contact Form Submissions</h1>
+                <div class="table-container">
+                    <table id="contactsTable">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>City</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsTableBody">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Newsletter Subscribers Section -->
+            <section id="newsletter" class="content-section">
+                <h1>Newsletter Subscribers</h1>
+                <div class="table-container">
+                    <table id="newsletterTable">
+                        <thead>
+                            <tr>
+                                <th>Email Address</th>
+                                <th>Subscribed Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="newsletterTableBody">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Image Cropper Modal -->
+    <div id="cropperModal" class="modal">
+        <div class="modal-content">
+            <h3>Crop Image</h3>
+            <div class="cropper-container-wrapper">
+                <img id="cropperImage" src="" alt="Image to crop">
+            </div>
+            <div class="modal-actions">
+                <button id="cropConfirm" class="submit-btn">Crop & Upload</button>
+                <button id="cropCancel" class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script>
+        // Check authentication before loading admin panel
+        async function checkAuth() {
+            const token = localStorage.getItem('adminToken');
+            
+            if (!token) {
+                window.location.href = '/admin/login.html';
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/admin/verify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ token })
+                });
+                
+                const result = await response.json();
+                
+                if (!result.success || !result.valid) {
+                    localStorage.removeItem('adminToken');
+                    window.location.href = '/admin/login.html';
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = '/admin/login.html';
+            }
+        }
+        
+        // Check auth on page load
+        checkAuth();
+    </script>
+    <script src="admin.js"></script>
+</body>
+</html>
