@@ -19,6 +19,8 @@ Thumbs.db
 # Uploads (user-generated content)
 uploads/*
 !uploads/.gitkeep
+!uploads/sample-*.jpg
+!uploads/sample-*.jpeg
 
 # IDE/Editor files
 .idea/
