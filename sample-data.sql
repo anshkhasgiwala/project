@@ -1,4 +1,3 @@
--- Insert sample projects
 INSERT INTO projects (name, description, image_url) VALUES
 ('Modern Website Design', 'A sleek and responsive website design for a tech startup', '/uploads/sample-project-1.jpg'),
 ('Mobile App Development', 'Cross-platform mobile application with stunning UI', '/uploads/sample-project-2.jpg'),
@@ -7,7 +6,6 @@ INSERT INTO projects (name, description, image_url) VALUES
 ('Digital Marketing', 'Comprehensive digital marketing campaign', '/uploads/sample-project-5.jpg'),
 ('UI/UX Design', 'User-centered design for better engagement', '/uploads/sample-project-6.jpg');
 
--- Insert sample clients
 INSERT INTO clients (name, description, designation, image_url) VALUES
 ('John Smith', 'Excellent work! The team delivered beyond our expectations.', 'CEO, Tech Corp', '/uploads/sample-client-1.jpg'),
 ('Sarah Johnson', 'Professional, creative, and always on time. Highly recommended!', 'Marketing Director', '/uploads/sample-client-2.jpg'),
